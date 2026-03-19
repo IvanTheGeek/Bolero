@@ -15,6 +15,7 @@
     <Compile Include="Components.fs" />
     <Compile Include="Html.fs" />
     <Compile Include="Extensions.fs" />
+    <None Include="Bolero.Server.props" />
     <None Include="paket.references" />
   </ItemGroup>
   <ItemGroup>

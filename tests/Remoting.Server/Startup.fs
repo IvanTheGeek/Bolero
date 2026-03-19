@@ -135,6 +135,7 @@ type Startup() =
             .UseAuthorization()
             .UseAntiforgery()
             .UseEndpoints(fun endpoints ->
+                endpoints.MapStaticAssets() |> ignore
                 endpoints.MapBoleroRemoting()
                     .WithOpenApi()
                 |> ignore

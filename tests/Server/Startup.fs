@@ -43,6 +43,7 @@ type Startup() =
             .UseRouting()
             .UseBlazorFrameworkFiles()
             .UseEndpoints(fun endpoints ->
+                endpoints.MapStaticAssets() |> ignore
                 endpoints.MapGet("/external-link", fun ctx ->
                     let body = "This is a static non-Bolero page" |> Encoding.UTF8.GetBytes
                     ctx.Response.Body.WriteAsync(ReadOnlyMemory body).AsTask()

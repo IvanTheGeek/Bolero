@@ -1,6 +1,8 @@
 namespace Bolero.Tests.Web
 
 open System
+open System.Net.Http
+open System.Text.RegularExpressions
 open NUnit.Framework
 open OpenQA.Selenium
 open Swensen.Unquote
@@ -38,6 +40,16 @@ module Html =
     [<Test>]
     let ``Bolero Component``() =
         test <@ elt.ById("bolero-component").Text = "Component content" @>
+
+    [<Test>]
+    let ``Blazor script asset is available``() =
+        use client = new HttpClient()
+        let html = client.GetStringAsync(WebFixture.Url).Result
+        let script = Regex.Match(html, "_framework/blazor\\.[^\"']+\\.js")
+        test <@ script.Success @>
+        let scriptUrl = Uri(Uri(WebFixture.Url + "/"), script.Value)
+        let response = client.GetAsync(scriptUrl).Result
+        test <@ response.IsSuccessStatusCode @>
 
     [<Test>]
     let ``Boolean cond reacts to events``() =

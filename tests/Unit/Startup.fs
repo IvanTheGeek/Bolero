@@ -109,6 +109,9 @@ type Startup() =
             .UseAuthorization()
             .UseBlazorFrameworkFiles()
             .UseEndpoints(fun endpoints ->
+#if NET9_0_OR_GREATER
+                endpoints.MapStaticAssets() |> ignore
+#endif
                 endpoints.MapBlazorHub() |> ignore
                 endpoints.MapBoleroRemoting() |> ignore
                 endpoints.MapFallbackToBolero(Page.index) |> ignore)

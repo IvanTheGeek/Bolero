@@ -13,8 +13,10 @@ excludeddependencies
 include-pdbs true
 files
     obj\Release\net8.0\ref\Bolero.Server.dll ==> ref/net8.0
+    Bolero.Server.props ==> buildTransitive
 dependencies
     framework: net8.0
         Microsoft.AspNetCore.Components.Web >= 8.0
         Microsoft.AspNetCore.Components.WebAssembly >= 8.0
+        Microsoft.AspNetCore.Components.WebAssembly.Server >= 8.0
         Microsoft.JSInterop.WebAssembly >= 8.0
