@@ -47,8 +47,8 @@ type WebFixture() =
     static let startChrome() =
         async {
             let options = ChromeOptions()
-            options.AddArguments ["headless"; "disable-gpu"]
-            driver <- new ChromeDriver(Environment.CurrentDirectory, options)
+            options.AddArguments ["headless"; "disable-gpu"; "no-sandbox"; "disable-dev-shm-usage"]
+            driver <- new ChromeDriver(options)
         }
 
     // static let startFirefox() =

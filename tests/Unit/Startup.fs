@@ -103,11 +103,11 @@ type Startup() =
         |> ignore
 
     member this.Configure(app: IApplicationBuilder) =
-        app .UseAuthentication()
+        app .UseBlazorFrameworkFiles()
             .UseStaticFiles()
             .UseRouting()
+            .UseAuthentication()
             .UseAuthorization()
-            .UseBlazorFrameworkFiles()
             .UseEndpoints(fun endpoints ->
 #if NET9_0_OR_GREATER
                 endpoints.MapStaticAssets() |> ignore
